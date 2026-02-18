@@ -1,12 +1,32 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HelloVue from "../components/HelloVue.vue";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 ---
 
-<BaseLayout title="coolmasterclown.com" description="Personal site">
-  <h1>coolmasterclown.com</h1>
+<BaseLayout title="coolmasterclown.com" description="Hobbies, articles, and links">
+  <SiteHeader />
 
-  <p>Work in progress.</p>
+  <section class="card">
+    <h1>Home</h1>
+    <p class="muted">
+      Hobbies, experiments, and write-ups. Content-first, no fluff.
+    </p>
+  </section>
 
-  <HelloVue client:load />
+  <hr />
+
+  <section>
+    <h2>Links</h2>
+    <div class="links">
+      <a href="https://github.com/" rel="me">GitHub</a>
+      <a href="https://www.youtube.com/" rel="me">YouTube</a>
+      <a href="https://www.linkedin.com/" rel="me">LinkedIn</a>
+    </div>
+    <p class="muted" style="margin-top: 0.75rem;">
+      Replace these with your real links (or remove this section later).
+    </p>
+  </section>
+
+  <SiteFooter />
 </BaseLayout>

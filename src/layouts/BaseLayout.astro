@@ -1,5 +1,6 @@
 ---
-// src/layouts/BaseLayout.astro
+import "../styles/global.css";
+
 const {
   title = "coolmasterclown.com",
   description = "Personal site",
@@ -14,10 +15,9 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-
-  <body style="font-family: system-ui, sans-serif; padding: 2rem;">
-    <main>
+  <body>
+    <div class="container">
       <slot />
-    </main>
+    </div>
   </body>
 </html>

@@ -1,0 +1,15 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (path: string) => (pathname === path ? "active" : "");
+---
+
+<header class="nav">
+  <a href="/" class={isActive("/")}>
+    <strong>coolmasterclown.com</strong>
+  </a>
+
+  <nav style="display:flex; gap:1rem;">
+    <a href="/" class={isActive("/")}>Home</a>
+    <a href="/articles" class={isActive("/articles")}>Articles</a>
+  </nav>
+</header>

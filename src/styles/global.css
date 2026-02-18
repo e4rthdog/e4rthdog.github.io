@@ -1,0 +1,101 @@
+/* src/styles/global.css */
+
+/* Dark-first, readable, minimal */
+:root {
+	color-scheme: dark;
+
+	--bg: #0b0f14;
+	--surface: #0f1621;
+	--text: #e6edf3;
+	--muted: #a9b4c0;
+	--line: rgba(230, 237, 243, 0.12);
+	--link: #7dd3fc;
+
+	--max: 70ch;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-family:
+		system-ui,
+		-apple-system,
+		Segoe UI,
+		Roboto,
+		Arial,
+		sans-serif;
+	line-height: 1.6;
+}
+
+a {
+	color: var(--link);
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+.container {
+	max-width: var(--max);
+	margin: 0 auto;
+	padding: 2.5rem 1.25rem;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid var(--line);
+	margin: 2rem 0;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1.2;
+	margin: 0 0 0.75rem 0;
+}
+
+p {
+	margin: 0 0 1rem 0;
+	color: var(--text);
+}
+small,
+.muted {
+	color: var(--muted);
+}
+
+.nav {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 1.25rem;
+	border-bottom: 1px solid var(--line);
+	margin-bottom: 2rem;
+}
+
+.nav a {
+	color: var(--text);
+	opacity: 0.9;
+}
+
+.nav a.active {
+	opacity: 1;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+.links {
+	display: grid;
+	gap: 0.5rem;
+	padding-left: 1rem;
+}
