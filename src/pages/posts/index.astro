@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import { getCollection } from "astro:content";
+
+const isProd = import.meta.env.PROD;
+
+let posts = await getCollection("posts", ({ data }) => {
+  // hide drafts only in production
+  return isProd ? !data.draft : true;
+});
+
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const fmt = new Intl.DateTimeFormat("en-GB", { year: "numeric", month: "short", day: "2-digit" });
+---
+
+<BaseLayout title="Posts • coolmasterclown.com" description="Posts">
+  <SiteHeader />
+
+  <h1>Posts</h1>
+
+  {posts.length === 0 ? (
+    <p class="muted">No posts yet.</p>
+  ) : (
+    <div style="display:grid; gap: 0.75rem;">
+      {posts.map((p) => (
+        <a class="card" href={`/posts/${p.slug}/`}>
+          <div style="display:flex; justify-content:space-between; gap:1rem; align-items:baseline;">
+            <strong>{p.data.title}</strong>
+            <small class="muted">{fmt.format(p.data.date)}</small>
+          </div>
+
+          {p.data.tags?.length ? (
+            <div class="muted" style="margin-top:.35rem;">
+              {p.data.tags.join(" · ")}
+              {p.data.draft ? " · draft" : ""}
+            </div>
+          ) : (
+            p.data.draft ? <div class="muted" style="margin-top:.35rem;">draft</div> : null
+          )}
+        </a>
+      ))}
+    </div>
+  )}
+
+  <SiteFooter />
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((p) => ({
+    params: { slug: p.slug }, // includes nested folders
+    props: { post: p },
+  }));
+}
+
+const { post } = Astro.props;
+
+if (import.meta.env.PROD && post.data.draft) {
+  // In production, drafts should not exist as pages
+  return Astro.redirect("/posts", 302);
+}
+
+const { Content } = await post.render();
+const fmt = new Intl.DateTimeFormat("en-GB", { year: "numeric", month: "short", day: "2-digit" });
+---
+
+<BaseLayout title={`${post.data.title} • coolmasterclown.com`} description={post.data.title}>
+  <SiteHeader />
+
+  <article class="card" style="padding: 1.25rem;">
+    <h1 style="margin-bottom:.25rem;">{post.data.title}</h1>
+    <div class="muted" style="margin-bottom: 1.25rem;">
+      <small>{fmt.format(post.data.date)}{post.data.draft ? " · draft" : ""}</small>
+      {post.data.tags?.length ? <div>{post.data.tags.join(" · ")}</div> : null}
+    </div>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <SiteFooter />
+
+</BaseLayout>

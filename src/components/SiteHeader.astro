@@ -1,6 +1,10 @@
 ---
 const pathname = Astro.url.pathname;
-const isActive = (path: string) => (pathname === path ? "active" : "");
+
+const isActive = (path: string) => {
+  if (path === "/") return pathname === "/" ? "active" : "";
+  return pathname === path || pathname.startsWith(path + "/") ? "active" : "";
+};
 ---
 
 <header class="nav">
@@ -10,6 +14,6 @@ const isActive = (path: string) => (pathname === path ? "active" : "");
 
   <nav style="display:flex; gap:1rem;">
     <a href="/" class={isActive("/")}>Home</a>
-    <a href="/articles" class={isActive("/articles")}>Articles</a>
+    <a href="/posts" class={isActive("/posts")}>Posts</a>
   </nav>
 </header>

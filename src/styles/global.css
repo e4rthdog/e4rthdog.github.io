@@ -101,3 +101,34 @@ small,
 	gap: 0.5rem;
 	padding-left: 1rem;
 }
+
+/* Prose defaults for Markdown content */
+.prose p {
+	margin: 0 0 1rem 0;
+}
+.prose h2 {
+	margin: 1.75rem 0 0.75rem 0;
+}
+.prose h3 {
+	margin: 1.5rem 0 0.5rem 0;
+}
+.prose ul {
+	margin: 0 0 1rem 1.25rem;
+}
+.prose li {
+	margin: 0.25rem 0;
+}
+.prose a {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+.prose pre {
+	overflow: auto;
+	padding: 1rem;
+	border: 1px solid var(--line);
+	border-radius: 14px;
+	background: var(--surface);
+}
+.prose code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
