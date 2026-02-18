@@ -28,6 +28,8 @@ body {
 	background: var(--bg);
 	color: var(--text);
 	font-family:
+		'IBM Plex Sans Variable',
+		'IBM Plex Sans',
 		system-ui,
 		-apple-system,
 		Segoe UI,
